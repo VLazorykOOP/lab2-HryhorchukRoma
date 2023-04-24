@@ -25,7 +25,7 @@ void task1() {
     return 0;
 }
 
-void task2()
+void task3()
 {
     // Шифрування даних з використання побітових операцій 
     // Data encryption using bitwise operations
@@ -33,7 +33,7 @@ void task2()
 
 }
 
-void task3()
+void task2()
 {
     bool parityBit(short num) {
   bool result = false;
