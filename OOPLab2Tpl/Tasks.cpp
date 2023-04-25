@@ -35,6 +35,7 @@ void task3()
 
 void task2()
 {
+    {
     bool parityBit(short num) {
   bool result = false;
   for (int i = 1; i < 14; i++) {
@@ -42,7 +43,7 @@ void task2()
       result = !result;
   }
   return result;
-}
+    }
 
 int main() {
   cout << "1. Encode.\n2. Decode.\nChoose: ";
@@ -121,6 +122,7 @@ int main() {
   return 0;
 }
     cout << "  Data encryption using structures with bit fields \n";
+}
 }
 
 
