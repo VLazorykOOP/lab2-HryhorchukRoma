@@ -35,15 +35,14 @@ void task3()
 
 void task2()
 {
-    {
-    bool parityBit(short num) {
+  bool parityBit(short num) {
   bool result = false;
   for (int i = 1; i < 14; i++) {
     if ((num >> i) & 1)
       result = !result;
   }
   return result;
-    }
+}
 
 int main() {
   cout << "1. Encode.\n2. Decode.\nChoose: ";
@@ -70,10 +69,16 @@ int main() {
     }
     for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 32; j++) {
+        // cout << bitset<16>(a[i][j]) << endl;
+        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= j;
+        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] <<= 11;
+        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= i << 9;
+        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= a[i][j] << 1;
+        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= parityBit(res[i][j]);
         cout << "coded symbol '" << a[i][j] << "' in pos [" << i << "][" << j
              << "]:" << endl;
@@ -120,9 +125,6 @@ int main() {
   }
   }
   return 0;
-}
-    cout << "  Data encryption using structures with bit fields \n";
-}
 }
 
 
