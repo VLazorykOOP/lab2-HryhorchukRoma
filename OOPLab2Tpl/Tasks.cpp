@@ -69,16 +69,10 @@ int main() {
     }
     for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 32; j++) {
-        // cout << bitset<16>(a[i][j]) << endl;
-        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= j;
-        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] <<= 11;
-        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= i << 9;
-        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= a[i][j] << 1;
-        // cout << bitset<16>(res[i][j]) << endl;
         res[i][j] |= parityBit(res[i][j]);
         cout << "coded symbol '" << a[i][j] << "' in pos [" << i << "][" << j
              << "]:" << endl;
