@@ -8,86 +8,74 @@ using namespace std;
 void MenuTask()
 {
     cout << "     Menu Task   \n";
-    cout << "    1.  Calculation of expressions using bitwise operations  \n";
-    cout << "    2.  Data encryption using bitwise operations \n";
-    cout << "    3.  Data encryption using structures with bit fields \n";
-    cout << "    4.  The problem of using bitwise operations \n";
-    cout << "    5.  Examples of problems using bitwise operations \n";
-    cout << "    6.  Exit \n";
+    cout << "    1.  Task2  \n";
+    cout << "    2.  Task2 \n";
+    cout << "    3.  Examples \n";
+    cout << "    4.  Exit \n";
 }
 void task1() {
     int a, b, c, d;
     cin>> a >> b >> c >> d;
     double defaultNum = (12 * a + ((d*15+12*b)/1024) - 12 * c + d * 15);
-    double customNum = ((a << 3) + (a << 2)) + ((((d << 4) - d) + ((d << 3) + (d << 2))) >> 10) - ((c << 3) + (c << 2)) + ((d << 4) - d);
+    double customNum = ((a << 3) + (a << 2)) + ((((d << 4) - d) + ((b << 3) + (b << 2))) >> 10) - ((c << 3) + (c << 2)) + ((d << 4) - d);
     cout<< defaultNum << endl << customNum <<endl;
     cout << " Calculation of expressions using bitwise operations  \n";
-    return 0;
+    return;
 }
 
-void task3()
-{
-    // Шифрування даних з використання побітових операцій 
-    // Data encryption using bitwise operations
-    cout << " Data encryption using bitwise operations  \n";
 
+bool parityBit(short num) {
+    bool result = false;
+    for (int i = 1; i < 14; i++) {
+        if ((num >> i) & 1)
+            result = !result;
+    }
+    return result;
 }
-
-void task2()
-{
-  bool parityBit(short num) {
-  bool result = false;
-  for (int i = 1; i < 14; i++) {
-    if ((num >> i) & 1)
-      result = !result;
-  }
-  return result;
-}
-
-int main() {
+void task2() {
   cout << "1. Encode.\n2. Decode.\nChoose: ";
   int choose = 0;
   cin >> choose;
   switch (choose) {
   case 1: {
-    char a[4][32];
-    short res[4][32] = {0};
-    cin.ignore(32, '\n');
-    for (int i = 0; i < 4; i++) {
-      cin.getline(a[i], 32);
-    }
-    for (int i = 0; i < 4; i++) {
-      if (strlen(a[i]) < 32) {
-        for (int c = strlen(a[i]); c < 32; c++) {
-          a[i][c] = ' ';
-        }
-        a[i][31] = '\0';
+      char a[4][32];
+      short res[4][32] = { 0 };
+      cin.ignore(32, '\n');
+      for (int i = 0; i < 4; i++) {
+          cin.getline(a[i], 32);
       }
-    }
-    for (int i = 0; i < 4; i++) {
-      cout << a[i] << ";" << endl;
-    }
-    for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 32; j++) {
-        // cout << bitset<16>(a[i][j]) << endl;
-        // cout << bitset<16>(res[i][j]) << endl;
-        res[i][j] |= j;
-        // cout << bitset<16>(res[i][j]) << endl;
-        res[i][j] <<= 11;
-        // cout << bitset<16>(res[i][j]) << endl;
-        res[i][j] |= i << 9;
-        // cout << bitset<16>(res[i][j]) << endl;
-        res[i][j] |= a[i][j] << 1;
-        // cout << bitset<16>(res[i][j]) << endl;
-        res[i][j] |= parityBit(res[i][j]);
-        cout << "coded symbol '" << a[i][j] << "' in pos [" << i << "][" << j
-             << "]:" << endl;
-        cout << bitset<16>(res[i][j]) << endl;
+      for (int i = 0; i < 4; i++) {
+          if (strlen(a[i]) < 32) {
+              for (int c = strlen(a[i]); c < 32; c++) {
+                  a[i][c] = ' ';
+              }
+              a[i][31] = '\0';
+          }
       }
-    }
-    ofstream resBinFile("/Users/admin/Documents/oop/lab2/lab2/out", ios::out | ios::binary);
-    resBinFile.write((char *)&res, (4 * 32) * sizeof(short));
-  } break;
+      for (int i = 0; i < 4; i++) {
+          cout << a[i] << ";" << endl;
+      }
+      for (int i = 0; i < 4; i++) {
+          for (int j = 0; j < 32; j++) {
+              // cout << bitset<16>(a[i][j]) << endl;
+              // cout << bitset<16>(res[i][j]) << endl;
+              res[i][j] |= j;
+              // cout << bitset<16>(res[i][j]) << endl;
+              res[i][j] <<= 11;
+              // cout << bitset<16>(res[i][j]) << endl;
+              res[i][j] |= i << 9;
+              // cout << bitset<16>(res[i][j]) << endl;
+              res[i][j] |= a[i][j] << 1;
+              // cout << bitset<16>(res[i][j]) << endl;
+              res[i][j] |= parityBit(res[i][j]);
+              cout << "coded symbol '" << a[i][j] << "' in pos [" << i << "][" << j
+                  << "]:" << endl;
+              cout << bitset<16>(res[i][j]) << endl;
+          }
+      }
+      ofstream resBinFile("/Users/admin/Documents/oop/lab2/lab2/out", ios::out | ios::binary);
+      resBinFile.write((char*)&res, (4 * 32) * sizeof(short));
+  };
   case 2: {
     short fromBinary[4][32];
     char result[4][32];
@@ -121,16 +109,7 @@ int main() {
   } break;
   default: {
     cout << "Invalid input\n";
-    return -1;
+    break;
   }
   }
-  return 0;
-}
-
-
-void task4()
-{   // Задача із використання побітових операцій
-    // The problem of using bitwise operations
-    cout << " Data encryption using structures with bit fields \n";
-
 }

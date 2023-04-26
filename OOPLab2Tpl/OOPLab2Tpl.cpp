@@ -13,7 +13,7 @@ int main()
 {
     cout << "OOP. Template for laboratory work #2.\n";
 
-    char ch = '5';
+    char ch = '3';
     do {
         system("cls");
         MenuTask();
@@ -23,15 +23,14 @@ int main()
 
         switch (ch) {
         case '1': task1();   break;
-        case '2': task1();   break;
-        case '3': task1();   break;
-        case '4': task1();   break;
-		case '5':  Examples(); break;
-		case '6': return 0;
+        case '2': task2();   break;
+		case '3':  Examples(); break;
+		case '4': return 0;
+        default: break;
 	    }
         cout << " Press any key and enter\n";
         ch = cin.get();
-    } while (ch != '6');
+    } while (ch != '4');
 
     return 0;
 }
